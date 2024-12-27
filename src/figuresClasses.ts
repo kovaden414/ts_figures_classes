@@ -13,7 +13,14 @@ export class Triangle implements Figure {
     public b: number,
     public c: number,
   ) {
-    if (a <= 0 || b <= 0 || c <= 0 || a >= b + c || b >= a + c || c >= b + a) {
+    if (
+      this.a <= 0 ||
+      this.b <= 0 ||
+      this.c <= 0 ||
+      this.a >= this.b + this.c ||
+      this.b >= this.a + this.c ||
+      this.c >= this.b + this.a
+    ) {
       throw new Error(`Sides ${a}, ${b} and ${c} can not form a triangle`);
     }
   }
@@ -34,15 +41,15 @@ export class Circle implements Figure {
 
   constructor(
     public color: string,
-    public a: number,
+    public radius: number,
   ) {
-    if (a <= 0) {
+    if (radius <= 0) {
       throw new Error(`Radius must be more than 0`);
     }
   }
 
   getArea(): number {
-    return Math.round(Math.PI * Math.pow(this.a, 2) * 100) / 100;
+    return Math.round(Math.PI * Math.pow(this.radius, 2) * 100) / 100;
   }
 }
 
@@ -51,16 +58,16 @@ export class Rectangle implements Figure {
 
   constructor(
     public color: string,
-    public a: number,
-    public b: number,
+    public height: number,
+    public width: number,
   ) {
-    if (a <= 0 || b <= 0) {
+    if (height <= 0 || width <= 0) {
       throw new Error(`Width and height must be more than 0`);
     }
   }
 
   getArea(): number {
-    return Math.round(this.a * this.b * 100) / 100;
+    return Math.round(this.height * this.width * 100) / 100;
   }
 }
 
